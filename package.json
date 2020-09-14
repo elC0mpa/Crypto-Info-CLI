@@ -1,6 +1,6 @@
 {
   "name": "crypto-tool",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Console tool created to gather crypto currencies information from Coingecko API. Its main purpose is to present market data about crypto currencies and their evolution over time.",
   "main": "index.js",
   "bin": {
@@ -11,6 +11,10 @@
   },
   "author": "el_c0mpa",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elC0mpa/Crypto-Info-CLI.git"
+  },
   "dependencies": {
     "chalk": "^4.1.0",
     "clear": "^0.1.0",
@@ -22,5 +26,10 @@
     "inquirer": "^7.3.3",
     "minimist": "^1.2.5",
     "touch": "^3.1.0"
-  }
+  },
+  "keywords": [
+    "crypto",
+    "crypto currencies",
+    "crypto investment"
+  ]
 }
