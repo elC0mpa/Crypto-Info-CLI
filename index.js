@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const chalk = require("chalk");
 const clear = require("clear");
 const figlet = require("figlet");
@@ -18,7 +19,7 @@ const printInitialInfo = () => {
 
   console.log(
     chalk.blueBright(
-      "\nDeveloped by elC0mpa (https://github.com/elC0mpa) and Powered by Coingecko\n"
+      "\nDeveloped by elC0mpa (https://github.com/elC0mpa) and Powered by Coingecko API\n"
     )
   );
 };
