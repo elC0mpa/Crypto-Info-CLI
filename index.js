@@ -51,16 +51,6 @@ const configure = async () => {
   configuration.set("currency", result.currency.toLowerCase());
 };
 
-const keypress = async () => {
-  process.stdin.setRawMode(true);
-  return new Promise((resolve) =>
-    process.stdin.once("data", () => {
-      process.stdin.setRawMode(false);
-      resolve();
-    })
-  );
-};
-
 const main = async () => {
   let repeat = true;
   while (repeat) {
