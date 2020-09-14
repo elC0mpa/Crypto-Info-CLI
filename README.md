@@ -22,3 +22,19 @@ Console tool created to gather crypto currencies information from Coingecko API.
 - Dogecoin
 
 ## Installation
+
+```javascript
+npm i -g crypto-info
+```
+
+## Basic usage
+
+Once it has been installed, you only need to execute the CLI command:
+
+```javascript
+$ > crypto-info
+```
+
+## Copyright
+
+[MIT](../LICENSE.md) © [José Gabriel Companioni Benítez (elC0mpa)](https://github.com/elC0mpa)
