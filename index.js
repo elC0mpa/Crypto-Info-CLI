@@ -47,6 +47,32 @@ const getMarketData = async () => {
   table.printCurrencyInfo(crypto_info);
 };
 
+const getHistoricalData = async () => {
+  if (!configuration.has("currency")) {
+    const info = await inquirer.askCurrencyInfo();
+    configuration.set("currency", info.currency[0].toLowerCase());
+  }
+  const currency = configuration.get("currency");
+  const status = await new clui.Spinner("Please wait until data is available");
+  status.start();
+  const crypto_info = await coingecko.getCryptoCurrencyHistoricalData(
+    currency,
+    [
+      "bitcoin",
+      "maker",
+      "ethereum",
+      "monero",
+      "dash",
+      "litecoin",
+      "tether",
+      "dogecoin",
+    ]
+  );
+  status.stop();
+  console.log("Historical Data (" + currency.toUpperCase() + "):");
+  table.printCurrencyHistoricalData(crypto_info);
+};
+
 const configure = async () => {
   const result = await inquirer.askCurrencyInfo();
   configuration.set("currency", result.currency.toLowerCase());
@@ -61,6 +87,8 @@ const main = async () => {
       await configure();
     } else if (option.option === "Show Market Data") {
       await getMarketData();
+    } else if (option.option === "Show Historical Data") {
+      await getHistoricalData();
     }
     repeat = await inquirer.waitKeyPress();
     repeat = repeat.option;
