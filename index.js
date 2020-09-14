@@ -48,7 +48,7 @@ const getMarketData = async () => {
 
 const configure = async () => {
   const result = await inquirer.askCurrencyInfo();
-  configuration.set("currency", result.currency[0].toLowerCase());
+  configuration.set("currency", result.currency.toLowerCase());
 };
 
 const keypress = async () => {
