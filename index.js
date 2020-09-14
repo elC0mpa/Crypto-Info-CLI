@@ -8,21 +8,29 @@ const table = require("./lib/table");
 
 clear();
 console.log(
-  chalk.blueBright(
+  chalk.yellowBright(
     figlet.textSync("Crypto Info Tool", { horizontalLayout: "full" })
   )
 );
 
+console.log(
+  chalk.blueBright(
+    "\nDeveloped by elC0mpa (https://github.com/elC0mpa) and Powered by Coingecko\n"
+  )
+);
 const currencies = async () => {
   const info = await inquirer.askCurrencyInfo();
   const currency = info.currency[0].toLowerCase();
   const status = await new clui.Spinner("Please wait until data is available");
   status.start();
-  const crypto_info = await coingecko.getCryptoCurrencyInfo(currency, [
+  const crypto_info = await coingecko.getCryptoCurrencyMarketData(currency, [
     "bitcoin",
+    "maker",
     "ethereum",
-    "litecoin",
     "monero",
+    "dash",
+    "litecoin",
+    "tether",
     "dogecoin",
   ]);
   status.stop();
