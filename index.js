@@ -41,7 +41,7 @@ const currencies = async () => {
     "dogecoin",
   ]);
   status.stop();
-  console.log("Currency: ", currency.toUpperCase());
+  console.log("Market Data: (" + currency.toUpperCase() + ")");
   table.printCurrencyInfo(crypto_info);
 };
 
