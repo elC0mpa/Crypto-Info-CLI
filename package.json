@@ -1,6 +1,6 @@
 {
   "name": "crypto-info",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Console tool created to gather crypto currencies information from Coingecko API. Its main purpose is to present market data about crypto currencies and their evolution over time.",
   "main": "index.js",
   "bin": {
@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "elC0mpa",
+  "author": "el_c0mpa",
   "license": "MIT",
   "dependencies": {
     "chalk": "^4.1.0",
