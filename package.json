@@ -1,6 +1,6 @@
 {
   "name": "crypto-tool",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Console tool created to gather crypto currencies information from Coingecko API. Its main purpose is to present market data about crypto currencies and their evolution over time.",
   "main": "index.js",
   "bin": {
@@ -30,6 +30,10 @@
   "keywords": [
     "crypto",
     "crypto currencies",
-    "crypto investment"
+    "crypto investment",
+    "bitcoin",
+    "ethereum",
+    "maker",
+    "monero"
   ]
 }
