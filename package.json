@@ -1,10 +1,10 @@
 {
-  "name": "crypto-info",
-  "version": "1.0.0",
+  "name": "crypto-tool",
+  "version": "1.0.1",
   "description": "Console tool created to gather crypto currencies information from Coingecko API. Its main purpose is to present market data about crypto currencies and their evolution over time.",
   "main": "index.js",
   "bin": {
-    "crypto-info": "index.js"
+    "crypto-tool": "index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

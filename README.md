@@ -24,7 +24,7 @@ Console tool created to gather crypto currencies information from Coingecko API.
 ## Installation
 
 ```javascript
-npm i -g crypto-info
+npm i -g crypto-tool
 ```
 
 ## Basic usage
@@ -32,7 +32,7 @@ npm i -g crypto-info
 Once it has been installed, you only need to execute the CLI command:
 
 ```javascript
-$ > crypto-info
+$ > crypto-tool
 ```
 
 ## Copyright
