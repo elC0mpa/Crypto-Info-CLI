@@ -5,6 +5,8 @@ const clui = require("clui");
 const inquirer = require("./lib/inquirer");
 const coingecko = require("./lib/coingecko");
 const table = require("./lib/table");
+const Configstore = require("configstore");
+let configuration = new Configstore("CryptoInfo");
 
 clear();
 console.log(
@@ -18,9 +20,14 @@ console.log(
     "\nDeveloped by elC0mpa (https://github.com/elC0mpa) and Powered by Coingecko\n"
   )
 );
+
 const currencies = async () => {
-  const info = await inquirer.askCurrencyInfo();
-  const currency = info.currency[0].toLowerCase();
+  if (!configuration.has("currency")) {
+    const info = await inquirer.askCurrencyInfo();
+    configuration.set("currency", info.currency[0].toLowerCase());
+  }
+
+  const currency = configuration.get("currency");
   const status = await new clui.Spinner("Please wait until data is available");
   status.start();
   const crypto_info = await coingecko.getCryptoCurrencyMarketData(currency, [
@@ -34,6 +41,7 @@ const currencies = async () => {
     "dogecoin",
   ]);
   status.stop();
+  console.log("Currency: ", currency.toUpperCase());
   table.printCurrencyInfo(crypto_info);
 };
 
