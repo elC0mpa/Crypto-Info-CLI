@@ -26,8 +26,7 @@ const printInitialInfo = () => {
 
 const getMarketData = async () => {
   if (!configuration.has("currency")) {
-    const info = await inquirer.askCurrencyInfo();
-    configuration.set("currency", info.currency[0].toLowerCase());
+    configure();
   }
   const currency = configuration.get("currency");
   const status = await new clui.Spinner("Please wait until data is available");
