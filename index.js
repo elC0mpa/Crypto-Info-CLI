@@ -33,12 +33,13 @@ const getMarketData = async () => {
   status.start();
   const crypto_info = await coingecko.getCryptoCurrencyMarketData(currency, [
     "bitcoin",
-    "maker",
     "ethereum",
+    "g999",
+    "tether",
+    "tron",
     "monero",
     "dash",
     "litecoin",
-    "tether",
     "dogecoin",
   ]);
   status.stop();
@@ -92,6 +93,7 @@ const main = async () => {
     repeat = await inquirer.waitKeyPress();
     repeat = repeat.option;
   }
+  // await coingecko.sortCryptos();
 };
 
 main();
