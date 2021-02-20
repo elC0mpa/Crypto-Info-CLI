@@ -58,24 +58,32 @@ const getHistoricalData = async () => {
     configuration.set("currency", info.currency[0].toLowerCase());
   }
   const currency = configuration.get("currency");
-  const status = await new clui.Spinner("Please wait until data is available");
-  status.start();
-  const crypto_info = await coingecko.getCryptoCurrencyHistoricalData(
-    currency,
-    [
-      "bitcoin",
-      "maker",
-      "ethereum",
-      "monero",
-      "dash",
-      "litecoin",
-      "tether",
-      "dogecoin",
-    ]
-  );
-  status.stop();
-  console.log("Historical Data (" + currency.toUpperCase() + "):");
-  table.printCurrencyHistoricalData(crypto_info);
+  try {
+    const status = await new clui.Spinner(
+      "Please wait until data is available"
+    );
+    status.start();
+    const crypto_info = await coingecko.getCryptoCurrencyHistoricalData(
+      currency,
+      [
+        "bitcoin",
+        "ethereum",
+        "g999",
+        "tether",
+        "tron",
+        "monero",
+        "dash",
+        "litecoin",
+        "dogecoin",
+      ]
+    );
+    status.stop();
+    console.log("Historical Data (" + currency.toUpperCase() + "):");
+    table.printCurrencyHistoricalData(crypto_info);
+  } catch (error) {
+    status.stop();
+    console.log(chalk.red("There was a problem when trying to get the data\n"));
+  }
 };
 
 const configure = async () => {
