@@ -57,13 +57,14 @@ const getOrderedData = async (orderMethod) => {
     configure();
   }
   const currency = configuration.get("currency");
+  const per_page = configuration.get("per_page") || 15;
   const status = await new clui.Spinner("Please wait until data is available");
   status.start();
   try {
     const crypto_info = await coingecko.getCryptoCurrencyOrderedData(
       currency,
       orderMethod,
-      15,
+      per_page,
       0
     );
     status.stop();
@@ -111,8 +112,14 @@ const getHistoricalData = async () => {
 };
 
 const configure = async () => {
-  const result = await inquirer.askCurrencyInfo();
-  configuration.set("currency", result.currency.toLowerCase());
+  const { config } = await inquirer.showConfigMenu();
+  if (config === "Currency") {
+    const { currency } = await inquirer.askCurrencyInfo();
+    configuration.set("currency", currency.toLowerCase());
+  } else if (config === "Items per page") {
+    const { per_page } = await inquirer.askItemsPerPageInfo();
+    configuration.set("per_page", Number(per_page));
+  }
 };
 
 const main = async () => {
