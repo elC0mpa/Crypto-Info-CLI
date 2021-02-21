@@ -58,15 +58,27 @@ const getOrderedData = async (orderMethod) => {
   const status = await new clui.Spinner("Please wait until data is available");
   status.start();
   try {
-    const crypto_info = await coingecko.getCryptoCurrencyOrderedData(
-      currency,
-      orderMethod,
-      per_page,
-      0
-    );
-    status.stop();
-    console.log("Market Data (" + currency.toUpperCase() + "):");
-    table.printCurrencyInfo(crypto_info);
+    let page = 1;
+    let finish = false;
+    while (finish === false) {
+      const crypto_info = await coingecko.getCryptoCurrencyOrderedData(
+        currency,
+        orderMethod,
+        per_page,
+        page
+      );
+      status.stop();
+      console.log("Market Data (" + currency.toUpperCase() + "):");
+      table.printCurrencyInfo(crypto_info);
+      const { pagination } = await inquirer.showPaginationMenu(page);
+      if (pagination === "<- Back") {
+        page = page - 1;
+      } else if (pagination === "Next ->") {
+        page = page + 1;
+      } else if (pagination === "Enough") {
+        finish = true;
+      }
+    }
   } catch (error) {
     status.stop();
     console.log(chalk.red("There was a problem when trying to get the data\n"));
