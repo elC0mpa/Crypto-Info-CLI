@@ -52,6 +52,30 @@ const getMarketData = async () => {
   }
 };
 
+const getOrderedData = async (orderMethod) => {
+  if (!configuration.has("currency")) {
+    configure();
+  }
+  const currency = configuration.get("currency");
+  const status = await new clui.Spinner("Please wait until data is available");
+  status.start();
+  try {
+    const crypto_info = await coingecko.getCryptoCurrencyOrderedData(
+      currency,
+      orderMethod,
+      15,
+      0
+    );
+    status.stop();
+    console.log("Market Data (" + currency.toUpperCase() + "):");
+    table.printCurrencyInfo(crypto_info);
+  } catch (error) {
+    status.stop();
+    console.log(chalk.red("There was a problem when trying to get the data\n"));
+    console.log(error);
+  }
+};
+
 const getHistoricalData = async () => {
   if (!configuration.has("currency")) {
     const info = await inquirer.askCurrencyInfo();
@@ -95,13 +119,16 @@ const main = async () => {
   let repeat = true;
   while (repeat) {
     printInitialInfo();
-    const option = await inquirer.showMainMenu();
-    if (option.option === "Configuration") {
+    const { option } = await inquirer.showMainMenu();
+    if (option === "Configuration") {
       await configure();
-    } else if (option.option === "Show Market Data") {
+    } else if (option === "Show Market Data") {
       await getMarketData();
-    } else if (option.option === "Show Historical Data") {
+    } else if (option === "Show Historical Data") {
       await getHistoricalData();
+    } else if (option === "Sort crypto currencies by...") {
+      const { order } = await inquirer.showSortMenu();
+      await getOrderedData(order);
     }
     repeat = await inquirer.waitKeyPress();
     repeat = repeat.option;
