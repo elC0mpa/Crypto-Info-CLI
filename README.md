@@ -8,17 +8,18 @@ Console tool created to gather crypto currencies information from Coingecko API.
 
 - Friendly console user interface
 - Saves your preferences
-- User can select between the 8 major currencies to show its data
+- User can select between the 8 major currencies or bitcoin to show its data
 
 ## Gathered crypto currencies
 
 - Bitcoin
-- Maker
 - Ethereum
+- G999
+- Tether
+- Tron
 - Monero
 - Dash
 - Litecoin
-- Tether
 - Dogecoin
 
 ## Installation
@@ -32,7 +33,7 @@ npm i -g crypto-tool
 Once it has been installed, you only need to execute the CLI command:
 
 ```javascript
-$ > crypto-tool
+$ > crypto - tool;
 ```
 
 ## Copyright
