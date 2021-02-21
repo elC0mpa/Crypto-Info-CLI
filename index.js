@@ -53,10 +53,7 @@ const getMarketData = async () => {
 };
 
 const getOrderedData = async (orderMethod) => {
-  if (!configuration.has("currency")) {
-    configure();
-  }
-  const currency = configuration.get("currency");
+  const currency = configuration.get("currency") || "usd";
   const per_page = configuration.get("per_page") || 15;
   const status = await new clui.Spinner("Please wait until data is available");
   status.start();
