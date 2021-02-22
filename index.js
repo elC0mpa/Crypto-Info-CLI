@@ -130,6 +130,8 @@ const configure = async () => {
   } else if (config === "Items per page") {
     const { per_page } = await inquirer.askItemsPerPageInfo();
     configuration.set("per_page", Number(per_page));
+  } else if (config === "Favorite cryptos") {
+    await configureFavoriteCryptos();
   }
 };
 
