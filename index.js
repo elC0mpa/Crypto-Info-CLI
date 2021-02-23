@@ -120,8 +120,12 @@ const configureFavoriteCryptos = async () => {
   }
   const { action } = await inquirer.favoriteCryptosActions();
   if (action === "Add new crypto") {
+    const status = await new clui.Spinner(
+      "Please wait until data is available"
+    );
+    status.start();
     const { data: ids } = await coingecko.getCryptoCurrencyIDs();
-
+    status.stop();
     const names = ids.map((id) => {
       return id.name;
     });
