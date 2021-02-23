@@ -143,7 +143,7 @@ const configureFavoriteCryptos = async () => {
       );
       repeat = option;
     }
-    cryptos = favs === undefined ? cryptos : [...cryptos, ...favs];
+    cryptos = favs === undefined ? cryptos : [...favs, ...cryptos];
     configuration.set("favs", cryptos);
   } else if (action === "Delete existing crypto") {
     let repeat = true;
@@ -192,7 +192,6 @@ const main = async () => {
     repeat = await inquirer.waitKeyPress();
     repeat = repeat.option;
   }
-  // await coingecko.sortCryptos();
 };
 
 main();
