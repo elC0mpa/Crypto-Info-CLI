@@ -177,9 +177,9 @@ const main = async () => {
     const { option } = await inquirer.showMainMenu();
     if (option === "Configuration") {
       await configure();
-    } else if (option === "Show Market Data") {
+    } else if (option === "Show Market Data (Favorite cryptos)") {
       await getMarketData();
-    } else if (option === "Show Historical Data") {
+    } else if (option === "Show Historical Data (Favorite cryptos)") {
       await getHistoricalData();
     } else if (option === "Sort crypto currencies by...") {
       const { order } = await inquirer.showSortMenu();
