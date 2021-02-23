@@ -32,17 +32,13 @@ const getMarketData = async () => {
   const status = await new clui.Spinner("Please wait until data is available");
   status.start();
   try {
-    const crypto_info = await coingecko.getCryptoCurrencyMarketData(currency, [
-      "bitcoin",
-      "ethereum",
-      "g999",
-      "tether",
-      "tron",
-      "monero",
-      "dash",
-      "litecoin",
-      "dogecoin",
-    ]);
+    let cryptos = configuration.get("favs");
+    cryptos =
+      cryptos === undefined || cryptos.length === 0 ? ["bitcoin"] : cryptos;
+    const crypto_info = await coingecko.getCryptoCurrencyMarketData(
+      currency,
+      cryptos
+    );
     status.stop();
     console.log("Market Data (" + currency.toUpperCase() + "):");
     table.printCurrencyInfo(crypto_info);
@@ -99,19 +95,12 @@ const getHistoricalData = async () => {
       "Please wait until data is available"
     );
     status.start();
+    let cryptos = configuration.get("favs");
+    cryptos =
+      cryptos === undefined || cryptos.length === 0 ? ["bitcoin"] : cryptos;
     const crypto_info = await coingecko.getCryptoCurrencyHistoricalData(
       currency,
-      [
-        "bitcoin",
-        "ethereum",
-        "g999",
-        "tether",
-        "tron",
-        "monero",
-        "dash",
-        "litecoin",
-        "dogecoin",
-      ]
+      cryptos
     );
     status.stop();
     console.log("Historical Data (" + currency.toUpperCase() + "):");
