@@ -2,7 +2,6 @@
 const chalk = require("chalk");
 const clear = require("clear");
 const figlet = require("figlet");
-// const clui = require("clui");
 const inquirer = require("./lib/inquirer");
 const { configure } = require("./utils/configuration");
 const {
@@ -10,10 +9,6 @@ const {
   getHistoricalData,
   getOrderedData,
 } = require("./utils/coingecko");
-// const coingecko = require("./lib/coingecko");
-// const table = require("./lib/table");
-// const Configstore = require("configstore");
-// let configuration = new Configstore("CryptoInfo");
 
 const printInitialInfo = () => {
   clear();
