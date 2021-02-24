@@ -9,6 +9,7 @@ const {
   getHistoricalData,
   getOrderedData,
 } = require("./utils/coingecko");
+const notifier = require("node-notifier");
 
 const printInitialInfo = () => {
   clear();
@@ -34,14 +35,16 @@ const main = async () => {
       await configure();
     } else if (option === "Show Market Data (Favorite cryptos)") {
       await getMarketData();
+      await inquirer.waitKeyPress("Press enter to continue");
     } else if (option === "Show Historical Data (Favorite cryptos)") {
       await getHistoricalData();
+      await inquirer.waitKeyPress("Press enter to continue");
     } else if (option === "Sort crypto currencies by...") {
       const { order } = await inquirer.showSortMenu();
       await getOrderedData(order);
+    } else if (option === "Exit") {
+      repeat = false;
     }
-    repeat = await inquirer.waitKeyPress();
-    repeat = repeat.option;
   }
 };
 
