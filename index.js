@@ -50,4 +50,20 @@ const loop = async () => {
   }
 };
 
+const main = async () => {
+  const argv = yargs(hideBin(process.argv)).argv;
+  if (argv.configure) {
+    await configure();
+  } else if (argv["market-data"]) {
+    await getMarketData();
+  } else if (argv["historical-data"]) {
+    await getHistoricalData();
+  } else if (argv["ordered-data"]) {
+    const { order } = await inquirer.showSortMenu();
+    await getOrderedData(order);
+  } else {
+    loop();
+  }
+};
+
 main();
