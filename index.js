@@ -9,7 +9,9 @@ const {
   getHistoricalData,
   getOrderedData,
 } = require("./utils/coingecko");
-const notifier = require("node-notifier");
+// const notifier = require("node-notifier");
+const yargs = require("yargs/yargs");
+const { hideBin } = require("yargs/helpers");
 
 const printInitialInfo = () => {
   clear();
@@ -26,7 +28,7 @@ const printInitialInfo = () => {
   );
 };
 
-const main = async () => {
+const loop = async () => {
   let repeat = true;
   while (repeat) {
     printInitialInfo();
